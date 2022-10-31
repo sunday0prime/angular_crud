@@ -1,0 +1,35 @@
+{
+  "posts": [
+    {
+      "id": 1,
+      "title": "json-server",
+      "author": "typicode"
+    },
+    {
+      "id": 2,
+      "lastName": "Murphy",
+      "email": "f.murphy@email.com",
+      "mobile": "+11 839200",
+      "salary": 12080,
+      "firstName": "Felix"
+    },
+    {
+      "id": 3,
+      "firstName": "Mildred",
+      "lastName": "Aniston",
+      "email": "milly.a@hotmail.com",
+      "mobile": "+11 382140",
+      "salary": 10280
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  }
+}

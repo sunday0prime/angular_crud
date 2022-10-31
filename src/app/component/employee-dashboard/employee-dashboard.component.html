@@ -1,0 +1,80 @@
+<nav class="nabar navbar-light bg-primary">
+    <div class="container-fluid">
+        <div class="d-flex">
+            <h1 class="logo">AngularCRUD</h1>
+            <div class="align-content-left">
+                <button class="btn btn-success" type="button" data-bs-toggle="modal" data-bs-target="#addemployee-md">Add Employee</button>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<table class="table table-stripped">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Email</th>
+            <th>Mobile No.</th>
+            <th>Salary</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let employee of employees">
+            <th>{{ employee.id }}</th>
+            <td>{{ employee.firstName }}</td>
+            <td>{{ employee.lastName }}</td>
+            <td>{{ employee.email }}</td>
+            <td>{{ employee.mobile }}</td>
+            <td>$ {{ employee.salary | number }}</td>
+            <td class="form-group" role="toolbar">
+                <button class="btn btn-primary mx-2" data-bs-toggle="modal" data-bs-target="#addemployee-md" (click)="editEmployee(employee)">Edit</button>
+                <button class="btn btn-danger mx-2" (click)="dropEmployee(employee.id)">Delete</button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<div class="modal fade" id="addemployee-md" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="addemployee-md-label" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h1 class="modal-title fs-5" id="addemployee-md-label">Add an Employee</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <form class="form" [formGroup]="formValue">
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col">
+                          <input type="text" class="form-control" formControlName="firstname" placeholder="First name" aria-label="First name" required>
+                        </div>
+                        <div class="col mb-3">
+                          <input type="text" class="form-control" formControlName="lastname" placeholder="Last name" aria-label="Last name" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="email" class="form-label d-none">Email</label>
+                            <input type="email" class="form-control" id="email" formControlName="email" placeholder="Email (new.employee@email.com)" required>
+                          </div>
+                          <div class="mb-3">
+                            <label for="mobile_no" class="form-label d-none">Mobile Number</label>
+                            <input type="phone" class="form-control" id="mobile_no" formControlName="mobile" placeholder="Mobile number (+44 83292984)">
+                          </div>
+                          <div class="mb-3">
+                            <label for="salary" class="form-label d-none">Salary</label>
+                            <input type="number" class="form-control" id="salary" formControlName="salary" placeholder="Salary (92,984)" min="100">
+                          </div>
+                      </div>
+                </div>
+            </form>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="cancelForm()">Cancel Changes</button>
+            <button *ngIf="!updating" type="submit" class="btn btn-primary" data-bs-dismiss="modal" (click)="postEmployee()">Add Employee</button>
+            <button *ngIf="updating" type="button" class="btn btn-info" data-bs-dismiss="modal" (click)="updateEmployee()">Update Employee</button>
+        </div>
+        </div>
+    </div>
+</div>
